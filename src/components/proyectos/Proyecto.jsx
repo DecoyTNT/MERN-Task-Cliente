@@ -1,13 +1,19 @@
 import React, { useContext } from 'react';
 import proyectoContext from '../../context/proyectos/proyectoContext';
+import tareaContext from '../../context/tareas/tareaContext';
 
 const Proyecto = ({ proyecto }) => {
 
     const proyectosContext = useContext(proyectoContext);
     const { proyectoActual } = proyectosContext;
 
+    const tareasContext = useContext(tareaContext);
+    const { obtenerTareas, limpiarTarea } = tareasContext;
+
     const onClickProyecto = () => {
         proyectoActual(proyecto);
+        obtenerTareas(proyecto.id);
+        limpiarTarea();
     }
 
     return (
