@@ -5,7 +5,7 @@ const NuevoProyecto = () => {
 
     // Obtener el state del formulario
     const proyectosContext = useContext(proyectoContext);
-    const { formulario, errorformulario, mostrarFormulario, agregarProyecto, mostrarError } = proyectosContext;
+    const { proyectoseleccionado, formulario, errorformulario, mostrarFormulario, agregarProyecto, mostrarError, editarProyecto } = proyectosContext;
 
     const [proyecto, setProyecto] = useState({
         nombre: ''
@@ -22,7 +22,6 @@ const NuevoProyecto = () => {
 
     const onSubmitProyecto = e => {
         e.preventDefault();
-
         // Validar
         if (nombre.trim() === '') {
             return mostrarError();
@@ -39,6 +38,26 @@ const NuevoProyecto = () => {
 
 
     }
+
+    const onSubmitEditar = e => {
+        e.preventDefault();
+        // Validar
+        if (nombre.trim() === '') {
+            return mostrarError();
+        }
+
+        proyecto._id = proyectoseleccionado._id
+        // Editar proyecto
+        editarProyecto(proyecto);
+
+        // Reiniciar el form
+        setProyecto({
+            nombre: ''
+        })
+
+    }
+
+
 
     const onClickformulario = () => {
         mostrarFormulario();
@@ -72,6 +91,29 @@ const NuevoProyecto = () => {
                             type="submit"
                             className="btn btn-primario btn-block"
                             value="Agregar proyecto"
+                        />
+                    </form>
+                )
+                : null
+            }
+            {proyectoseleccionado
+                ? (
+                    <form
+                        className="formulario-nuevo-proyecto"
+                        onSubmit={onSubmitEditar}
+                    >
+                        <input
+                            type="text"
+                            className="input-text"
+                            placeholder="Nombre del proyecto"
+                            name="nombre"
+                            value={nombre}
+                            onChange={onChangeProyecto}
+                        />
+                        <input
+                            type="submit"
+                            className="btn btn-primario btn-block"
+                            value="Editar proyecto"
                         />
                     </form>
                 )

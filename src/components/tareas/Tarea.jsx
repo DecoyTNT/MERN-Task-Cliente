@@ -4,22 +4,19 @@ import tareaContext from '../../context/tareas/tareaContext';
 const Tarea = ({ tarea }) => {
 
     const tareasContext = useContext(tareaContext);
-    const { eliminarTarea, obtenerTareas, cambiarEstadoTarea, guardarTareaActual } = tareasContext;
+    const { eliminarTarea, editarTarea, guardarTareaActual } = tareasContext;
 
     const onClickEliminar = tarea => {
-        eliminarTarea(tarea.id);
-        obtenerTareas(tarea.proyectoId)
+        eliminarTarea(tarea._id);
     }
 
     const cambiarEstado = tarea => {
-        // if (tarea.estado) {
-        //     tarea.estado = false;
-        // } else {
-        //     tarea.estado = true;
-        // }
-        tarea.estado = !tarea.estado;
-        console.log(tarea.estado);
-        cambiarEstadoTarea(tarea)
+        if (tarea.estado) {
+            tarea.estado = false;
+        } else {
+            tarea.estado = true;
+        }
+        editarTarea(tarea)
     }
 
     const seleccionarTarea = tarea => {

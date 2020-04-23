@@ -12,7 +12,7 @@ const Proyecto = ({ proyecto }) => {
 
     const onClickProyecto = () => {
         proyectoActual(proyecto);
-        obtenerTareas(proyecto.id);
+        obtenerTareas(proyecto._id);
         limpiarTarea();
     }
 

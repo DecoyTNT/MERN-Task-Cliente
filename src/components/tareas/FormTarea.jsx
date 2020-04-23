@@ -20,13 +20,15 @@ const FormTarea = () => {
         }
     }, [tareaseleccionada])
 
+
     const [tarea, setTarea] = useState({
         nombre: ''
     });
 
+    if (!proyecto) return null;
+
     const { nombre } = tarea;
 
-    if (!proyecto) return null;
 
     // Array destructuring para extraer el proyecto actual
     const [proyectoActual] = proyecto;
@@ -44,14 +46,13 @@ const FormTarea = () => {
         if (nombre.trim() === '') return validarTarea();
 
         if (tareaseleccionada) {
-            editarTarea(tareaseleccionada);
+            editarTarea(tarea);
             limpiarTarea();
         } else {
-            tarea.proyectoId = proyectoActual.id;
-            tarea.estado = false;
+            tarea.proyecto = proyectoActual._id;
 
             agregarTarea(tarea);
-            obtenerTareas(proyectoActual.id);
+            obtenerTareas(proyectoActual._id);
 
             setTarea({
                 nombre: ''
