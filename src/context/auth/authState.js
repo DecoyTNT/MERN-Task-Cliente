@@ -35,7 +35,6 @@ const AuthState = props => {
 
             usuarioAutenticado();
         } catch (error) {
-            console.log(error.response.data.msg);
             const alerta = {
                 msg: error.response.data.msg,
                 categoria: 'alerta-error'
@@ -84,7 +83,6 @@ const AuthState = props => {
             usuarioAutenticado();
         } catch (error) {
             if (Array.isArray(error.response.data.errores)) {
-                console.log(error.response.data.errores[0].msg);
                 const alerta = {
                     msg: error.response.data.errores[0].msg,
                     categoria: 'alerta-error'
@@ -94,7 +92,6 @@ const AuthState = props => {
                     payload: alerta
                 });
             } else {
-                console.log(error.response.data.msg);
                 const alerta = {
                     msg: error.response.data.msg,
                     categoria: 'alerta-error'

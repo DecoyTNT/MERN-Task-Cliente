@@ -32,7 +32,7 @@ const TareaState = props => {
                 payload: resp.data.tareas
             })
         } catch (error) {
-            console.log(error.response);
+            console.log(error);
         }
     }
 
@@ -44,7 +44,7 @@ const TareaState = props => {
                 payload: resp.data.tarea
             })
         } catch (error) {
-            console.log(error.response);
+            console.log(error);
         }
     }
 
@@ -62,7 +62,7 @@ const TareaState = props => {
                 payload: id
             })
         } catch (error) {
-            console.log(error.response);
+            console.log(error);
         }
     }
 
@@ -74,7 +74,7 @@ const TareaState = props => {
                 payload: resp.data.tarea
             })
         } catch (error) {
-            console.log(error.response);
+            console.log(error);
         }
     }
 
